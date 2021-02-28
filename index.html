@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
+    <script src="https://unpkg.com/vue@2.5.6/dist/vue.js"></script>
+    <style>
+        i:hover {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <ul class="list-group">
+                    <div v-for="user in users" :post="user">
+                        <li class="list-group-item">
+                            <div class="row justify-content-between">
+                                <div class="col-7">
+                                    <p>{{ user.name }}</p>
+                                </div>
+                                <div class="col justify-content-end">
+                                    <button class="btn btn-sm btn-primary" @click="editUser(index)">Edit</button>
+                                    <button class="btn btn-sm btn-danger" @click="deleteUser(index)">Delete</button>
+                                </div>
+                            </div>
+                        </li>
+                    </div>
+                </ul>
+                <div id="comment-box">
+                    <div class="input-group my-3">
+                        <label for="komentar"></label>
+                        <input type="text" class="form-control" id="komentar" ref="name" placeholder="Masukkan Nama Anda..." v-model="user"
+                               @keyup.enter="postUser" :value="this.user">
+                        <div class="input-group-append" v-if="tombol_action === 'Add'">
+                            <button class="btn btn-outline-success" type="button" id="button-addon2" @click="postUser">{{tombol_action}}</button>
+                        </div>
+                        <div class="input-group-append" v-if="tombol_action === 'Update'">
+                            <button class="btn btn-outline-success" type="button" id="button-addon1" @click="updateUser(index)">{{tombol_action}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
